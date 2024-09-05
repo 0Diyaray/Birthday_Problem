@@ -16,13 +16,13 @@
 		double percup = classrooms_status.Count(x => x == true);
 		double perdown = classrooms_status.Count(x => x == false);
 		double perc = percup / iteration;
-		Console.WriteLine(perc*100 + "%");
+		Console.WriteLine("Percentage:" + perc*100 + "%");
 
-		bool get_probability(int x)
+		bool get_probability(int size)
 		{
 			List<int> classroom = new List<int>();
 			bool isduplicate = false;
-			for (int person = 0; person != x; person++)
+			for (int person = 0; person != size; person++)
 			{
 				int dayof_birth = random.Next(1, 366);
 				classroom.Add(dayof_birth);
