@@ -5,7 +5,7 @@
 		Random random = new Random();
 		List<(bool,bool)> classrooms_status = new List<(bool, bool)>();
 
-		int classroom_size = 50; // Size of each classroom
+		int classroom_size = 23; // Size of each classroom
 		double iteration = 100000; // Classroom amount that will be produced for calculation.
 
 		for (int i = 0; i < iteration; i++)
