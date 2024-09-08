@@ -10,7 +10,7 @@
 
 		for (int i = 0; i < iteration; i++)
 		{
-			classrooms_status.Add(get_probability(classroom_size));
+			classrooms_status.Add(Create_Check(classroom_size));
 		}
 
 		double classes_duplicate = classrooms_status.Count(x => x.Item1 == true);
@@ -19,7 +19,7 @@
 		double perc_triplicate = classes_triplicate / iteration;
 		Console.WriteLine("Duplicate Percentage:" + perc_duplicate*100 + "%");
 		Console.WriteLine("Triplicate Percentage:" + perc_triplicate * 100 + "%");
-		(bool,bool) get_probability(int size)
+		(bool,bool) Create_Check(int size)
 		{
 			List<int> classroom = new List<int>();
 			bool isduplicate = false;
