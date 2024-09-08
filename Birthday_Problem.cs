@@ -3,27 +3,24 @@
 	static void Main()
 	{
 		Random random = new Random();
-		List<(bool,bool)> classrooms_status = new List<(bool, bool)>();
+		List<bool> classrooms_status = new List<bool>();
 
 		int classroom_size = 23; // Size of each classroom
 		double iteration = 100000; // Classroom amount that will be produced for calculation.
+		int howmany = 2; // How many person must be the same age
 
 		for (int i = 0; i < iteration; i++)
 		{
-			classrooms_status.Add(get_probability(classroom_size));
+			classrooms_status.Add(Create_Check(classroom_size,howmany));
 		}
 
-		double classes_duplicate = classrooms_status.Count(x => x.Item1 == true);
-		double classes_triplicate = classrooms_status.Count(x => x.Item2 == true);
-		double perc_duplicate = classes_duplicate / iteration;
-		double perc_triplicate = classes_triplicate / iteration;
-		Console.WriteLine("Duplicate Percentage:" + perc_duplicate*100 + "%");
-		Console.WriteLine("Triplicate Percentage:" + perc_triplicate * 100 + "%");
-		(bool,bool) get_probability(int size)
+		double classes_howmany = classrooms_status.Count(x => x == true);
+		double perc_howmany = classes_howmany / iteration;
+		Console.WriteLine("Percentage:" + perc_howmany * 100+ "%");
+		bool Create_Check(int size,int howmany)
 		{
 			List<int> classroom = new List<int>();
-			bool isduplicate = false;
-			bool istriplicate = false;
+			bool isproper = false;
 			for (int person = 0; person != size; person++)
 			{
 				int dayof_birth = random.Next(1, 366);
@@ -31,16 +28,12 @@
 			}
 			foreach (int persons_birthday in classroom)
 			{
-				if (classroom.Count(x => x == persons_birthday) > 1 && isduplicate == false)
+				if (classroom.Count(x => x == persons_birthday) > howmany-1 && isproper == false)
 				{
-					isduplicate=true;
-				}
-				if (classroom.Count(x => x == persons_birthday) > 2 && istriplicate == false)
-				{
-					istriplicate=true;
+					return true;
 				}
 			}
-			return (isduplicate,istriplicate);
+			return isproper;
 		}
 	}
 }
